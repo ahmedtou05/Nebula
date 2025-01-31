@@ -15,9 +15,9 @@ namespace nebula {
             if(!init())
                 glfwTerminate();
             
-            glfwSetKeyCallback(m_window, Input::key_callback);
-            glfwSetMouseButtonCallback(m_window, Input::mouse_button_callback);
-            glfwSetCursorPosCallback(m_window, Input::cursor_position_callback);
+            glfwSetKeyCallback(m_window, input::key_callback);
+            glfwSetMouseButtonCallback(m_window, input::mouse_button_callback);
+            glfwSetCursorPosCallback(m_window, input::cursor_position_callback);
         }
         Window::~Window()
         {

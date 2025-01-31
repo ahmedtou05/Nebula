@@ -5,7 +5,7 @@
 
 namespace nebula {
     namespace inputs {
-        class Input {
+        class input {
             private:
                 static bool m_Keys[MAX_KEYS];
                 static bool m_MouseButtons[MAX_BUTTONS];

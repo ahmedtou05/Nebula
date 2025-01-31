@@ -3,12 +3,12 @@
 
 namespace nebula {
     namespace inputs {
-        bool Input::m_Keys[MAX_KEYS] = { false };
-        bool Input::m_MouseButtons[MAX_BUTTONS] = { false };
-        double Input::mx = 0.0;
-        double Input::my = 0.0;
+        bool input::m_Keys[MAX_KEYS] = { false };
+        bool input::m_MouseButtons[MAX_BUTTONS] = { false };
+        double input::mx = 0.0;
+        double input::my = 0.0;
 
-        void Input::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+        void input::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
         {
             if (key >= 0 && key < MAX_KEYS)
             {
@@ -23,7 +23,7 @@ namespace nebula {
             }
         }
 
-        void Input::mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+        void input::mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
         {
             if (button >= 0 && button < MAX_BUTTONS)
             {
@@ -38,23 +38,23 @@ namespace nebula {
             }
         }
         
-        void Input::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+        void input::cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
         {
             mx = xpos;
             my = ypos;
         }
 
-        bool Input::isKeyPressed(int key)
+        bool input::isKeyPressed(int key)
         {
             return m_Keys[key];
         }
         
-        bool Input::isMouseButtonPressed(int button)
+        bool input::isMouseButtonPressed(int button)
         {
             return m_MouseButtons[button];
         }
 
-        void Input::getMousePosition(double& x, double& y)
+        void input::getMousePosition(double& x, double& y)
         {
             x = mx;
             y = my;
