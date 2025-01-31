@@ -8,8 +8,8 @@ namespace nebula {
     namespace graphics {
         class Window {
             private:
-                const char* m_title;
-                int m_width, m_height;
+                const char* m_Title;
+                int m_Width, m_Height;
                 GLFWwindow* m_window;
                 bool m_closed;
             public:
@@ -20,8 +20,8 @@ namespace nebula {
                 GLFWwindow* getGLFWWindow() const;
                 void clear() const;
 
-                inline int getWidth() const {return m_width;}
-                inline int getHeight() const {return m_height;}
+                inline int getWidth() const {return m_Width;}
+                inline int getHeight() const {return m_Height;}
             private:
                 bool init();
                 

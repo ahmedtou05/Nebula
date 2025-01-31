@@ -2,7 +2,8 @@ CXX = g++
 LDFLAGS = -lGL -lGLEW -lglfw -lGLU
 
 SRC = main.cpp \
-      graphics/window.cpp
+      graphics/window.cpp\
+	  inputs/input.cpp
 
 OUT = app
 

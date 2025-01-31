@@ -1,15 +1,23 @@
 #include "window.h"
+#include "../inputs/input.h"
 
 
 namespace nebula { 
     namespace graphics{
+        using namespace inputs;
 
         void windowResize(GLFWwindow* window, int width, int height);
         Window::Window(const char* title, int width, int height)
-        :m_title(title) , m_width(width), m_height(height){
-            
-            if (!init())
+        {
+            m_Title = title;
+            m_Width = width;
+            m_Height = height;
+            if(!init())
                 glfwTerminate();
+            
+            glfwSetKeyCallback(m_window, Input::key_callback);
+            glfwSetMouseButtonCallback(m_window, Input::mouse_button_callback);
+            glfwSetCursorPosCallback(m_window, Input::cursor_position_callback);
         }
         Window::~Window()
         {
@@ -25,10 +33,10 @@ namespace nebula {
             } 
             std::cout << "GLFW initialized successfully" << std::endl;
 
-            m_window = glfwCreateWindow(m_width, m_height, m_title, nullptr, nullptr);
+            m_window = glfwCreateWindow(m_Width, m_Height, m_Title, nullptr, nullptr);
             if (!m_window)
             {
-                std::cout << "Failed to create GLFW window" << std::endl;
+                std::cout << "Failed to create GLFW window! " << std::endl;
                 return false;
             }
             std::cout << "Window created successfully" << std::endl;
@@ -36,7 +44,6 @@ namespace nebula {
             glfwMakeContextCurrent(m_window);
             glfwSetWindowSizeCallback(m_window, windowResize);
 
-            std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
 
             if (glewInit() != GLEW_OK)
             {
@@ -45,19 +52,20 @@ namespace nebula {
             }
             std::cout << "GLEW initialized successfully" << std::endl;
 
+            std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
             return true;
 
+        }
+
+        void Window::clear() const
+        {
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         }
 
         void Window::update()
         {
             glfwPollEvents();
             glfwSwapBuffers(m_window);
-        }
-
-        void Window::clear() const
-        {
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         }
 
         bool Window::closed() const
